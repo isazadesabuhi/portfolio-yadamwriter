@@ -1,8 +1,7 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
-
 import reviewImg1 from "@/app/images/reviewImg1.jpg";
-import stars from "@/app/icons/stars.svg";
+import SvgIcon from "@/app/components/SvgIcon";
 
 const ReviewCard = ({
   name,
@@ -21,7 +20,7 @@ const ReviewCard = ({
     <div className="inline-flex h-[328px] w-[464px] flex-col items-start justify-start gap-[30px] rounded-[80px] bg-zinc-900 bg-opacity-50 p-[30px]">
       <div className="flex flex-col items-start justify-start gap-[15px]">
         <div className="inline-flex items-center justify-start gap-[15px]">
-          <div className="w-[309px] text-[34px] font-semibold text-white ">
+          <div className="w-[309px] text-[34px] font-semibold text-white">
             {name}
             <br />
             {surname}
@@ -37,7 +36,7 @@ const ReviewCard = ({
         </div>
       </div>
       <div className="inline-flex items-center justify-end gap-[5px]">
-        <Image src={stars} alt="stars_icon" />
+        <SvgIcon name="stars" fill={""} fillOpacity={""} />
         <div className="w-[353px] text-2xl font-semibold text-lime-400">
           {star}
         </div>

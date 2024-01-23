@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
   const HeadingObject: { [key: string]: string } = {
     "/about": "About",
     "/testimonial": "Testimonial",
-    "/projects": "Project",
+    "/projects": "Projects",
   };
 
 
