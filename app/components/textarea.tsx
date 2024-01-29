@@ -28,9 +28,9 @@ export default function Textarea() {
         id="message"
         rows={4}
         cols={33}
-        className="block h-[214px] w-full resize-none 
- rounded-[32px] bg-[#1C1C1C80] pl-[54px] pr-[20px] pt-[30px] text-[16px] 
- font-normal leading-normal text-[#FFFFFF] placeholder:text-[#FFFFFF80] lg:rounded-[45px] lg:pl-[79px] lg:text-[18px]"
+        className="block h-[214px] w-full resize-none rounded-[32px] bg-transparent-black-50 pl-[54px] 
+ pr-[20px] pt-[30px] text-[16px] font-normal leading-normal 
+ text-[#FFFFFF] outline-none ring-purple-50 placeholder:text-[#FFFFFF80] lg:rounded-[45px] lg:pl-[79px] lg:text-[18px]"
         placeholder={`${inputFocused ? "" : "Briefly describe your project"}`} 
         onChange={handleChange}
         onFocus={handleFocus}

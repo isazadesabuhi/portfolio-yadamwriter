@@ -1,9 +1,9 @@
 "use client"
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local"
 import "./globals.css";
 import NavBar from "@/app/components/navBar";
-const inter = Inter({ subsets: ["latin"] });
+const Fontspring = localFont({ src: './font/Fontspring.otf' })
 import { usePathname } from 'next/navigation'
 
 
@@ -14,26 +14,27 @@ import { usePathname } from 'next/navigation'
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
   const pathname = usePathname()
-
-  console.log(pathname); // This will log the current pathname
-
+  
   const HeadingObject: { [key: string]: string } = {
     "/about": "About",
     "/testimonial": "Testimonial",
     "/projects": "Projects",
+    "/projects/project1":"Budge Management App Case Study",
+    "/projects/project2":"Budge Management App Case Study",
+    "/projects/project3":"Budge Management App Case Study"
   };
 
 
-
   return (
-    <html className="max-w-[1512px] bg-black " lang="en">
-      <body className={inter.className}>
-      <h1 className="pb-[5px] text-[34px] font-medium text-MaBlue lg:pb-[15px] lg:text-[100px]">{HeadingObject[pathname]}</h1>
+    <html className="mx-auto max-w-[1728px] bg-black p-[5px] lg:p-[30px]" lang="en">
+      <body className={Fontspring.className}>
+        {typeof  HeadingObject[pathname] !== "undefined" ? 
+        <h1 className="pb-[5px] text-[34px] font-medium
+         leading-normal text-MaBlue lg:pb-[15px] lg:text-[100px]">{HeadingObject[pathname]}</h1> : null }
         {children}
-        {Object.keys(HeadingObject).includes(pathname) ? <div className="fixed inset-x-0 bottom-[20px] flex justify-center">
+        {Object.keys(HeadingObject).includes(pathname) ? <div className="fixed inset-x-0 bottom-[5px] flex justify-center lg:bottom-[30px]">
           <NavBar />
         </div> : "" }
-        
       </body>
     </html>
   );

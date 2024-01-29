@@ -17,10 +17,10 @@ const ReviewCard = ({
   image: StaticImageData;
 }) => {
   return (
-    <div className="inline-flex h-[328px] w-[464px] flex-col items-start justify-start gap-[30px] rounded-[80px] bg-zinc-900 bg-opacity-50 p-[30px]">
-      <div className="flex flex-col items-start justify-start gap-[15px]">
-        <div className="inline-flex items-center justify-start gap-[15px]">
-          <div className="w-[309px] text-[34px] font-semibold text-white">
+    <div className="flex aspect-[310/282] w-full flex-col items-start justify-between gap-[30px] rounded-[80px] bg-transparent-black-50 p-[30px] lg:aspect-[464/328] ">
+      <div className="flex w-full flex-col">
+        <div className="flex flex-row justify-between ">
+          <div className="text-[34px] font-semibold text-white">
             {name}
             <br />
             {surname}
@@ -31,13 +31,13 @@ const ReviewCard = ({
             alt={name}
           />
         </div>
-        <div className="h-[92px] w-[404px] text-lg font-normal text-white">
+        <div className=" text-lg font-normal text-white">
           {text}
         </div>
       </div>
-      <div className="inline-flex items-center justify-end gap-[5px]">
+      <div className="flex items-center justify-end gap-[5px]">
         <SvgIcon name="stars" fill={""} fillOpacity={""} />
-        <div className="w-[353px] text-2xl font-semibold text-lime-400">
+        <div className=" text-2xl font-semibold text-lime-400">
           {star}
         </div>
       </div>
@@ -47,9 +47,9 @@ const ReviewCard = ({
 
 export default function Testimonial() {
   return (
-    <div className="flex flex-col">
-      <div className="grid grid-cols-3 gap-x-[30px] gap-y-[45px]">
-        {Array.from({ length: 6 }).map((_, index) => (
+    <div className="flex flex-col pb-[82px] lg:pb-[130px]">
+      <div className="grid gap-y-[5px] sm:grid-cols-2 sm:gap-[20px] lg:grid-cols-3 lg:gap-x-[30px] lg:gap-y-[45px]">
+        {Array.from({ length: 9 }).map((_, index) => (
           <ReviewCard
             key={index}
             name="Eva"

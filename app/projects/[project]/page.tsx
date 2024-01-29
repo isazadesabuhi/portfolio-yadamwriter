@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import img_About1 from "@/app/images/img_About1.jpg";
@@ -13,7 +15,8 @@ import FontFamily10 from "@/app/images/FontFamily10.jpg";
 import ColorPalette11 from "@/app/images/ColorPalette11.jpg";
 import UIComponents12 from "@/app/images/UIComponents12.jpg";
 import VisualDesign13 from "@/app/images/VisualDesign13.jpg";
-import Arrow from "@/app/icons/Arrow.svg";
+import SvgIcon from "@/app/components/SvgIcon";
+import Button from "@/app/components/button";
 
 const ProjectElements = [
   { name: "About", image: img_About1 },
@@ -31,13 +34,21 @@ const ProjectElements = [
   { name: "Testimonial", image: VisualDesign13 },
 ];
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+};
+
 export default function Page({ params }: { params: { project: string } }) {
   return (
     <div className="">
       <div className="flex flex-col">
-        <h1 className="text-[34px] font-medium text-MaBlue lg:text-[100px]">
+        {/* <h1 className="text-[34px] font-medium leading-normal text-MaBlue lg:text-[100px]">
           Budge Management App Case Study
-        </h1>
+        </h1> */}
         <div className="flex flex-col gap-y-[30px] pt-[15px]">
           {ProjectElements.map((item, index) => {
             return (
@@ -45,17 +56,23 @@ export default function Page({ params }: { params: { project: string } }) {
                 <Image
                   src={item.image}
                   alt={item.name}
-                  width={1500}
-                  height={800}
-                  className="rounded-[25px] lg:rounded-[80px]"
+                  // width={1500}
+                  // height={800}
+                  className="aspect-[1452/816] w-full rounded-[25px] lg:rounded-[80px]"
                 />
               </div>
             );
           })}
         </div>
       </div>
-      <div className="fixed bottom-[100px] right-[30px] flex justify-center rounded-[45px] bg-[#1C1C1C80] p-[10px] text-MaBlue lg:bottom-[90px] lg:right-[40px] lg:px-[45px] lg:py-[30px]">
-        <Image src={Arrow} alt="Arrow" />
+      <button
+        onClick={scrollToTop}
+        className="fixed bottom-[100px] right-[30px] flex justify-center rounded-[45px] bg-transparent-black-50 p-[10px] text-MaBlue lg:bottom-[140px] lg:right-[40px] lg:px-[45px] lg:py-[30px]"
+      >
+        <SvgIcon name="Arrow" fill={""} fillOpacity={""} />
+      </button>
+      <div className="pt-[30px]">
+        <Button type="link" name="See it on Behance" />
       </div>
     </div>
   );

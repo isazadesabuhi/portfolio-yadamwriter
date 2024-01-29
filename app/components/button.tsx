@@ -38,7 +38,7 @@ export default function Button({ type, name, onDataFromButton } : {type:string; 
         sendDataToContactPage();
       }}
       className="group relative h-[77px] w-full overflow-hidden rounded-full border-MaBlue
-     bg-[#1C1C1C80] text-[#FFFFFF] lg:h-[107px]"
+      bg-transparent-black-50 text-[#FFFFFF] lg:h-[107px]"
     >
       <div
         className={`relative z-20 flex w-full flex-row gap-x-[10px] ${

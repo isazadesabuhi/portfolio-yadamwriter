@@ -12,12 +12,26 @@ export default function Input({
   name: string;
   inputType: string;
 }) {
+  const [isLabelHovered, setIsLabelHovered] = useState(false);
+
+  // Event handler for mouse enter
+  const handleMouseEnter = () => {
+    setIsLabelHovered(true);
+  };
+
+  // Event handler for mouse leave
+  const handleMouseLeave = () => {
+    setIsLabelHovered(false);
+  };
+
   const [inputValue, setInputValue] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
   const [inputValid, setInputValid] = useState(false);
   const [somethingWrong, setSomethingWrong] = useState(false);
 
-  const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
+  const handleChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setInputValue(event.target.value);
   };
 
@@ -30,21 +44,25 @@ export default function Input({
   };
 
   useEffect(() => {
-    if(inputValue.length >0){
-      if(inputValue.length > 3){
-        setInputValid(true)
-      }else{
-        setInputValid(false)
-        if(!inputFocused){
-          setSomethingWrong(true)
+    if (inputValue.length > 0) {
+      if (inputValue.length > 3) {
+        setInputValid(true);
+        setSomethingWrong(false)
+      } else {
+        setInputValid(false);
+        if (!inputFocused) {
+          setSomethingWrong(true);
         }
       }
     }
-    
-  },[inputValue.length,inputFocused])
+  }, [inputValue.length, inputFocused]);
 
   return (
-    <label className="group relative flex w-full overflow-hidden">
+    <label
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group relative flex w-full overflow-hidden"
+    >
       <span className="sr-only">Search</span>
       <span className="absolute inset-y-0 left-0 flex items-center overflow-hidden bg-[#1C1C1C80/50] pl-[20px] lg:pl-[45px]">
         <SvgIcon
@@ -52,7 +70,7 @@ export default function Input({
           fill={
             inputFocused || inputValid
               ? `#1364FF`
-              : somethingWrong 
+              : somethingWrong
               ? `#F16B51`
               : `white`
           }
@@ -62,22 +80,23 @@ export default function Input({
         />
       </span>
       <Image
-        src={inputFocused || inputValid || !somethingWrong ? Confirmation : Error}
+        src={
+          inputFocused || inputValid || !somethingWrong ? Confirmation : Error
+        }
         alt={somethingWrong ? "Error" : "Confirmation"}
-        width={24}
-        height={24}
-        className={`absolute left-1/2 top-[77px] w-full -translate-x-1/2 rounded-full 
-    opacity-100 transition-all
-    duration-300 ease-in-out  group-hover:opacity-100 lg:top-[107px]
-     ${
-      (somethingWrong && !inputFocused) || (inputValid && !inputFocused)
-        ? "top-[26.5px] size-[24px] translate-x-0 pr-[50px] lg:top-[38.5px] lg:translate-x-1 lg:pr-[75px]"
-        : "group-hover:top-[57px] lg:group-hover:top-[87px]" 
-    }`}
+        width={30}
+        height={30}
+        className={`absolute w-full rounded-full transition-all duration-300 ease-in-out        
+         ${
+           (somethingWrong && !inputFocused) || (inputValid && !inputFocused)
+             ? "right-[25px] top-[26.5px] size-[24px] translate-x-1/2 lg:right-[45px] lg:top-[39.5px] lg:size-[30px]"
+             : "top-[77px] group-hover:top-[57px] lg:top-[107px] lg:group-hover:top-[87px]"
+         }
+     `}
       />
       <input
-        className="block h-[77px] w-full 
-        rounded-[32px] bg-[#1C1C1C80] pl-[54px] text-[16px] font-normal
+        className="block h-[77px] w-full rounded-[32px] 
+        bg-transparent-black-50 pl-[54px] text-[16px] font-normal
          leading-normal text-[#FFFFFF]
           placeholder:text-[#FFFFFF80] focus:outline-none 
          lg:h-[107px]  lg:rounded-[45px] lg:pl-[79px]
