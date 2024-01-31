@@ -7,6 +7,7 @@ import NavBar from "@/app/components/navBar";
 import Textarea from "@/app/components/textarea";
 import Button from "@/app/components/button";
 import SvgIcon from "@/app/components/SvgIcon";
+import AnimatedText from "@/app/components/AnimatedText";
 
 export default function Contact() {
   const [exitBtn, setExitBtn] = useState(false);
@@ -29,7 +30,8 @@ export default function Contact() {
         }`}
       >
         <h1 className="col-span-2 pb-[5px] text-[34px] font-medium leading-normal text-MaBlue lg:pb-[15px] lg:text-[100px]">
-          Contact
+          
+          <AnimatedText text="Contact" />
         </h1>
         <div className="col-span-2 lg:col-span-1">
           <Input name="Name or Company" inputType="text" />

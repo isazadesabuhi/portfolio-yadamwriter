@@ -5,6 +5,8 @@ import "./globals.css";
 import NavBar from "@/app/components/navBar";
 const Fontspring = localFont({ src: './font/Fontspring.otf' })
 import { usePathname } from 'next/navigation'
+import AnimatedText from "@/app/components/AnimatedText";
+
 
 
 // export const metadata: Metadata = {
@@ -15,22 +17,22 @@ import { usePathname } from 'next/navigation'
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
   const pathname = usePathname()
   
-  const HeadingObject: { [key: string]: string } = {
+  const HeadingObject: { [key: string]: string | undefined } = {
     "/about": "About",
     "/testimonial": "Testimonial",
     "/projects": "Projects",
-    "/projects/project1":"Budge Management App Case Study",
-    "/projects/project2":"Budge Management App Case Study",
-    "/projects/project3":"Budge Management App Case Study"
+    "/projects/project1":undefined,
+    "/projects/project2":undefined,
+    "/projects/project3":undefined
   };
 
 
   return (
-    <html className="mx-auto max-w-[1728px] bg-black p-[5px] lg:p-[30px]" lang="en">
+    <html className={`mx-auto max-w-[1728px] bg-black  ${pathname === "/" ? "" : "p-[5px] lg:p-[30px]"}`} lang="en">
       <body className={Fontspring.className}>
         {typeof  HeadingObject[pathname] !== "undefined" ? 
         <h1 className="pb-[5px] text-[34px] font-medium
-         leading-normal text-MaBlue lg:pb-[15px] lg:text-[100px]">{HeadingObject[pathname]}</h1> : null }
+         leading-normal text-MaBlue lg:pb-[15px] lg:text-[100px]"><AnimatedText text={HeadingObject[pathname] || ""} /> </h1> : null }
         {children}
         {Object.keys(HeadingObject).includes(pathname) ? <div className="fixed inset-x-0 bottom-[5px] flex justify-center lg:bottom-[30px]">
           <NavBar />

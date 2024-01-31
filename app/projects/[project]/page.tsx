@@ -46,9 +46,10 @@ export default function Page({ params }: { params: { project: string } }) {
   return (
     <div className="">
       <div className="flex flex-col">
-        {/* <h1 className="text-[34px] font-medium leading-normal text-MaBlue lg:text-[100px]">
+        <h1 className="text-[34px] font-medium
+         leading-normal text-MaBlue lg:text-[100px]">
           Budge Management App Case Study
-        </h1> */}
+        </h1>
         <div className="flex flex-col gap-y-[30px] pt-[15px]">
           {ProjectElements.map((item, index) => {
             return (
