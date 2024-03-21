@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import SvgIcon from "@/app/components/SvgIcon";
-import AnimatedText from "@/app/components/AnimatedText";
+import AnimationPageName from "@/app/components/AnimationPageName"; // or LoadingAnimationGSAP
+import AnimationBckgroundPage from "@/app/components/AnimationBckgroundPage"
 const MainPageElements = [
   { name: "About", icon: "Smile", link: "/about" },
   { name: "Contact", icon: "Letter", link: "/contact" },
@@ -14,7 +14,11 @@ const MainPageElements = [
 
 export default function Home() {
   const [text, setText] = useState("");
+  const [hovered, setHovered] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(false); // null indicates no element is hovered
+  const [unhoveredIndex, setUnHoveredIndex] = useState(false); // null indicates no element is hovered
 
+  // Background text animation part
   return (
     <div className="relative grid min-h-screen grid-cols-1 gap-[30px] p-[30px] lg:grid-cols-2">
       {MainPageElements.map((item, index) => {
@@ -33,24 +37,40 @@ export default function Home() {
                 ? "pt-[20px] pl-[20px] lg:items-end lg:justify-end lg:pt-[50px] lg:pr-[50px]"
                 : ""
             }`}
-            onMouseEnter={() => setText(item.name)}
-            onMouseLeave={() => setText("")}
+            onMouseEnter={() => {
+              setText(item.name);
+              setHovered(true);
+              setHoveredIndex(index);
+              setUnHoveredIndex(null)
+            }}
+            onMouseLeave={() => {
+              setText(item.name);
+              setHovered(false);
+              setHoveredIndex(null);
+              setUnHoveredIndex(index)
+            }}
           >
             <div
               className={`flex flex-row items-center gap-x-[5px] text-[#1364FF] lg:gap-x-[8px]  ${
                 [1, 3].includes(index) ? "lg:flex-row-reverse" : ""
               }`}
             >
-                          <div className="size-[24px] lg:size-[30px]"> < SvgIcon fill="#1364FF" name={item.icon} fillOpacity={""} /></div>
-
-              {item.name}
+              {/* <div className="size-[24px] lg:size-[30px]"> */}
+                {" "}
+                <SvgIcon fill="#1364FF" name={item.icon} fillOpacity={""} />
+              {/* </div> */}
+              <AnimationPageName
+              {...{index,hoveredIndex,unhoveredIndex}}
+                text={item.name}
+                direction={undefined}
+                hovered={undefined}
+              />
             </div>
           </Link>
         );
       })}
-      <div className="hidden absolute left-1/2 top-1/2 lg:flex -translate-x-1/2 -translate-y-1/2 items-center justify-center text-[240px] text-[#1364FF]  ">
-        <AnimatedText text={text} />
-      </div>
+      {/* Backround text */}
+      <AnimationBckgroundPage {...{text,hovered}} />
     </div>
   );
 }

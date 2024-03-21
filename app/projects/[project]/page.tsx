@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-
+import Link from "next/link";
 import img_About1 from "@/app/images/img_About1.jpg";
 import OurRoles2 from "@/app/images/OurRoles2.jpg";
 import DesignProcess3 from "@/app/images/DesignProcess3.jpg";
@@ -68,12 +68,18 @@ export default function Page({ params }: { params: { project: string } }) {
       </div>
       <button
         onClick={scrollToTop}
-        className="fixed bottom-[100px] right-[30px] flex justify-center rounded-[45px] bg-transparent-black-50 p-[10px] text-MaBlue lg:bottom-[140px] lg:right-[40px] lg:px-[45px] lg:py-[30px]"
+        className="fixed bottom-[40px] right-[30px] flex justify-center rounded-[45px] bg-transparent-black-50 p-[10px] text-MaBlue lg:bottom-[30px] lg:right-[40px] lg:px-[45px] lg:py-[30px]"
       >
         <SvgIcon name="Arrow" fill={""} fillOpacity={""} />
       </button>
       <div className="pt-[30px]">
+      <Link
+          href="https://www.behance.net/gallery/187482819/Budgify-Budget-Management-Mobile-App-UI-UX-Design"
+          className=""
+          target="_blank"
+        >
         <Button type="link" name="See it on Behance" />
+        </Link>
       </div>
     </div>
   );

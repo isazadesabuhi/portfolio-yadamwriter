@@ -6,6 +6,7 @@ import NavBar from "@/app/components/navBar";
 const Fontspring = localFont({ src: './font/Fontspring.otf' })
 import { usePathname } from 'next/navigation'
 import AnimatedText from "@/app/components/AnimatedText";
+import { motion } from 'framer-motion';
 
 
 
@@ -16,6 +17,11 @@ import AnimatedText from "@/app/components/AnimatedText";
 
 export default function RootLayout({ children }: { children: React.ReactNode; }) {
   const pathname = usePathname()
+  
+  const childrenElements = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
+  };
   
   const HeadingObject: { [key: string]: string | undefined } = {
     "/about": "About",
@@ -33,7 +39,16 @@ export default function RootLayout({ children }: { children: React.ReactNode; })
         {typeof  HeadingObject[pathname] !== "undefined" ? 
         <h1 className="pb-[5px] text-[34px] font-medium
          leading-normal text-MaBlue lg:pb-[15px] lg:text-[100px]"><AnimatedText text={HeadingObject[pathname] || ""} /> </h1> : null }
-        {children}
+        <motion.nav
+        key={pathname}
+      initial="hidden"
+      animate="visible"
+      variants={childrenElements}
+    >
+      {children}
+    </motion.nav>
+        
+
         {Object.keys(HeadingObject).includes(pathname) ? <div className="fixed inset-x-0 bottom-[5px] flex justify-center lg:bottom-[30px]">
           <NavBar />
         </div> : "" }
